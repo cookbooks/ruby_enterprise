@@ -5,7 +5,7 @@
 # Author:: Joshua Timberman (<joshua@opscode.com>)
 # Author:: Sean Cribbs (<seancribbs@gmail.com>)
 # Author:: Michael Hale (<mikehale@gmail.com>)
-# 
+#
 # Copyright:: 2009-2010, Opscode, Inc.
 # Copyright:: 2009, Sean Cribbs
 # Copyright:: 2009, Michael Hale
@@ -44,7 +44,8 @@ bash "Install Ruby Enterprise Edition" do
   code <<-EOH
   tar zxf ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz
   ruby-enterprise-#{node[:ruby_enterprise][:version]}/installer \
-    --auto=#{node[:ruby_enterprise][:install_path]}
+    --auto=#{node[:ruby_enterprise][:install_path]} \
+    --dont-install-useful-gems
   EOH
   not_if do
     ::File.exists?("#{node[:ruby_enterprise][:install_path]}/bin/ree-version") &&

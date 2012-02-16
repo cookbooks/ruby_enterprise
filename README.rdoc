@@ -20,6 +20,10 @@ Include the ruby_enterprise recipe to install REE.
 
 Or add it to your role, or directly to a node's recipes.
 
+Note that this recipe disables the REE installer's default behavior of
+automatically installing the most recent versions of some additional gems
+(passenger, rails, mysql, etc.).
+
 Install RubyGems under REE with the ree_gem definition.
 
     ree_gem "rails" do
