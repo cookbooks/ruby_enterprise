@@ -44,8 +44,8 @@ bash "Install Ruby Enterprise Edition" do
   code <<-EOH
   tar zxf ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz
   ruby-enterprise-#{node[:ruby_enterprise][:version]}/installer \
-    --auto=#{node[:ruby_enterprise][:install_path]}
-    #{node[:ruby_enterprise][:dev_docs] ? '' : '--no-dev-docs'}
+    --auto=#{node[:ruby_enterprise][:install_path]} \
+    #{node[:ruby_enterprise][:dev_docs] ? '' : '--no-dev-docs'} \
     #{node[:ruby_enterprise][:install_useful_gems] ? '' : '--dont-install-useful-gems'}
   EOH
   not_if do
