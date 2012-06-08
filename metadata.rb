@@ -1,9 +1,9 @@
-maintainer       "Opscode, Inc."
-maintainer_email "cookbooks@opscode.com"
+maintainer       "Mike Fiedler"
+maintainer_email "miketheman@gmail.com"
 license          "Apache 2.0"
 description      "Installs/Configures ruby-enterprise"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.2.4"
+version          "0.2.6"
 
 recipe "ruby_enterprise", "Installs Ruby Enterprise Edition"
 
