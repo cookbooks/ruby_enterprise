@@ -2,10 +2,11 @@
 # Cookbook Name:: ruby_enterprise
 # Recipe:: default
 #
+# Author:: Mike Fiedler (<miketheman@gmail.com>)
 # Author:: Joshua Timberman (<joshua@opscode.com>)
 # Author:: Sean Cribbs (<seancribbs@gmail.com>)
 # Author:: Michael Hale (<mikehale@gmail.com>)
-#
+# 
 # Copyright:: 2009-2010, Opscode, Inc.
 # Copyright:: 2009, Sean Cribbs
 # Copyright:: 2009, Michael Hale
@@ -35,7 +36,7 @@ packages.each do |pkg|
 end
 
 remote_file "/tmp/ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz" do
-  source "#{node[:ruby_enterprise][:url]}.tar.gz"
+  source "http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz"
   not_if { ::File.exists?("/tmp/ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz") }
 end
 
@@ -45,7 +46,8 @@ bash "Install Ruby Enterprise Edition" do
   tar zxf ruby-enterprise-#{node[:ruby_enterprise][:version]}.tar.gz
   ruby-enterprise-#{node[:ruby_enterprise][:version]}/installer \
     --auto=#{node[:ruby_enterprise][:install_path]} \
-    --dont-install-useful-gems
+    #{node[:ruby_enterprise][:dev_docs] ? '' : '--no-dev-docs'} \
+    #{node[:ruby_enterprise][:install_useful_gems] ? '' : '--dont-install-useful-gems'}
   EOH
   not_if do
     ::File.exists?("#{node[:ruby_enterprise][:install_path]}/bin/ree-version") &&
